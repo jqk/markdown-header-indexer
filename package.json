@@ -1,0 +1,78 @@
+{
+  "name": "markdown-header-indexer",
+  "displayName": "markdown-header-indexer",
+  "description": "Adding index to markdown header",
+  "icon": "images/markdown-header-indexer.png",
+  "publisher": "Jason Fu",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.47.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.updateMarkdownHeaderIndex",
+    "onCommand:extension.removeMarkdownHeaderIndex"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.updateMarkdownHeaderIndex",
+        "title": "Markdown Update header index"
+      },
+      {
+        "command": "extension.removeMarkdownHeaderIndex",
+        "title": "Markdown Remove header index"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Markdown Header Indexer configuration",
+      "properties": {
+				"markdownHeaderIndexer.levelBegin": {
+					"type": "number",
+					"default": 2,
+					"description": "How many '#' are considered as first level index, larger than 0.\nDefault is 2."
+				},
+				"markdownHeaderIndexer.levelEnd": {
+					"type": "number",
+					"default": 6,
+					"description": "How many '#' are considered as max level index, larger than or equal to LevelBegin.\nDefault is 6."
+				},
+				"markdownHeaderIndexer.levelPrefixAndPostfix": {
+					"type": "string",
+					"default": "||、|||",
+					"description": "Prefix and postfix for the first level and all other level indexes, separated and enclosed by '|'.\nUsage: |first-level-prefix|first-level-postfix|other-level-prefix|other-level-postfix|"
+				},
+				"markdownHeaderIndexer.firstLevelIndex": {
+					"type": "string",
+					"default": "chinese",
+					"description": "The characters used for the first level index. Predefined catalogs are 'ALPHABET', 'CHINESE', 'ROMAN' and 'DEFAULT' (or leave empty).\nUsage: at least 10 characters, each separated and enclosed by '|'. \nExample: |a|b|c|d|e|f|g|h|i|j|"
+				}
+			}
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.47.0",
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
+    "eslint": "^6.8.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.1.2",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.3.0"
+  }
+}
