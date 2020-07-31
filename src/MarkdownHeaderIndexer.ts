@@ -1,6 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
-import { MarkdownPowerIndexParameter } from "./MarkdownPowerIndexParameter";
+import { MarkdownHeaderIndexerParameter } from "./MarkdownHeaderIndexerParameter";
 
 /**
  * Types of first level index.
@@ -18,6 +18,10 @@ enum FirstLevelIndexType {
      * using Roman numbers, from 1 to 20.
      */
     ROMAN,
+    /**
+     * using English numbers, from 1 to 20.
+     */
+    ENGLISH,
     /**
      * using customized numbers, at least provide 1 to 10.
      */
@@ -62,6 +66,9 @@ export class MarkdownHeaderIndexer {
         // FirstLevelIndexType.ROMAN
         ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
             "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"],
+        // FirstLevelIndexType.ENGLISH
+        ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
+            "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty"],
         // FirstLevelIndexType.CUSTOM
         // Leave empty if not customized.
         []
@@ -90,7 +97,7 @@ export class MarkdownHeaderIndexer {
     // Indicates what character the first level index uses.
     private firstLevelIndexType = FirstLevelIndexType.NONE;
 
-    constructor(parameter: MarkdownPowerIndexParameter) {
+    constructor(parameter: MarkdownHeaderIndexerParameter) {
         let ok = true;
 
         // The following loading sequence is changeable.
@@ -99,7 +106,7 @@ export class MarkdownHeaderIndexer {
         ok = this.loadPrefixAndPostfix(parameter) && ok;
 
         if (!ok) {
-            MarkdownPowerIndexParameter.save(parameter);
+            MarkdownHeaderIndexerParameter.save(parameter);
         }
 
         this.setIndexRegex();
@@ -121,7 +128,7 @@ export class MarkdownHeaderIndexer {
      * @param parameter the parameter object.
      * @returns true if parameter is valid, otherwise false.
      */
-    private loadLevelBeginAndEnd(parameter: MarkdownPowerIndexParameter): boolean {
+    private loadLevelBeginAndEnd(parameter: MarkdownHeaderIndexerParameter): boolean {
         if (parameter.levelEnd >= parameter.levelBegin && parameter.levelBegin > 0) {
             this.levelEnd = parameter.levelEnd;
             this.levelBegin = parameter.levelBegin;
@@ -145,7 +152,7 @@ export class MarkdownHeaderIndexer {
      * @param parameter the parameter object.
      * @returns true if parameter is valid, otherwise false.
      */
-    private loadPrefixAndPostfix(parameter: MarkdownPowerIndexParameter): boolean {
+    private loadPrefixAndPostfix(parameter: MarkdownHeaderIndexerParameter): boolean {
         let ok = false;
         let warning = "Invalid format for prefix and postfix.";
         const s = parameter.levelPrefixAndPostfix.trim();
@@ -273,7 +280,7 @@ export class MarkdownHeaderIndexer {
      * @param parameter the parameter object.
      * @returns true if parameter is valid, otherwise false.
      */
-    private loadFirstLevelIndex(parameter: MarkdownPowerIndexParameter): boolean {
+    private loadFirstLevelIndex(parameter: MarkdownHeaderIndexerParameter): boolean {
         let warning = "Invalid format for firstLevelIndex.";
         let s = parameter.firstLevelIndex.trim();
         const strLength = s.length;
@@ -321,6 +328,8 @@ export class MarkdownHeaderIndexer {
                 this.firstLevelIndexType = FirstLevelIndexType.CHINESE;
             } else if (s === FirstLevelIndexType[FirstLevelIndexType.ROMAN]) {
                 this.firstLevelIndexType = FirstLevelIndexType.ROMAN;
+            } else if (s === FirstLevelIndexType[FirstLevelIndexType.ENGLISH]) {
+                this.firstLevelIndexType = FirstLevelIndexType.ENGLISH;
             }
         }
 

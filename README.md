@@ -2,6 +2,15 @@
 
 `Markdown Header Indexer`是一款为`Markdown`文件更新标题序号的`VSCode`插件。初始开发于`VSCode 1.41.0`，没有其它依赖。理论上所有此版本后的`VSCode`均可使用。
 
+本文使用`Markdown Header Indexer`的默认配置生成标题序号：
+
+| 配置项 | 取值 |
+| --------   | ----- |
+| First Level Index | Chinese |
+| Level Begin | 2 |
+| Level End | 6 |
+| Level Prefix And Postfix | \|\|、\|\|\| |
+
 ## 一、 特点
 
 ![operation](images/operation.png)
@@ -79,7 +88,9 @@
 
 如果手工为`Header Seven`添加了序号，`清除标题序号`不会修改该行。
 
-### 2.4 配置项1
+### 2.4 配置项1：`First Level Index`
+
+以下预定义序号的名称，如`ALPHABET`、`ROMAN`等大小写不敏感。
 
 将`配置项1`修改为`ALPHABET`后，`更新标题序号`结果如下：
 
@@ -127,18 +138,21 @@
 * ALPHABET: 26
 * CHINESE: 20
 * ROMAN: 20
+* ENGLISH: 20
 
-若需要支持超过限制的序号，需自行设置：用`|`将所有序号分隔。示例如下：
+超限制时，将使用数字。例如使用`ALPHABET`，第`27`项由于没有对应的定义，将使用`27`作为序号。
+
+若要支持超过限制的序号，可自行设置：用`|`将所有序号分隔。示例如下：
 
 ```text
-|One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty|Twenty-One|Twenty-Tow|Twenty-Three|
+|Twenty-One|Twenty-Tow|Twenty-Three|One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty|
 ```
 
-以上示例设置标题序号最大到`23`。
+以上示例设置标题序号最大到`23`，相当于扩展了预定义的`ENGLISH`。前三项`Twenty-One`到`TwentyThree`仅为示例。
 
 该定义只对一级标题有效。自定义的标题序号字符串中**不能包含空格**，且至少提供`10`个值，否则将使用`DEFAULT`。
 
-### 2.5 配置项2及配置项3
+### 2.5 配置项2：`Level Begin`及配置项3：`Level End`
 
 `配置项2`和`配置项3`定义了`标题级别范围`，只有在该范围的标题才会被更新及清除标题序号。
 
@@ -158,7 +172,7 @@
 * 因为`配置项2`被设置为`1`，所以`Header One`也被添加了序号。
 * 因为`配置项3`被设置为`7`，所以`Header Seven`也被添加了序号。
 
-### 2.6 配置项4
+### 2.6 配置项4：`Level Prefix And Postfix`
 
 `配置项4`使用`|`分隔前后缀，按顺序为：
 
@@ -237,13 +251,7 @@
 
 标题内容`不要以数字开始`，否则可能被错误清除。
 
-## 四、 发行历史
-
-### 4.1 版本1.0.0: 2020-07-31
-
-初始版本。
-
-## 五、 参考
+## 四、 参考
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)

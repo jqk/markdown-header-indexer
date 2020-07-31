@@ -3,7 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { MarkdownHeaderIndexer } from "./MarkdownHeaderIndexer";
-import { MarkdownPowerIndexParameter } from './MarkdownPowerIndexParameter';
+import { MarkdownHeaderIndexerParameter } from './MarkdownHeaderIndexerParameter';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -11,7 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "markdown-header-index" is now active!');
+	console.log('Congratulations, your extension "Markdown Header Indexer" is now active!');
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -65,7 +65,7 @@ function process(editor: vscode.TextEditor, update: boolean) {
 
 	editor.edit(function (builder: vscode.TextEditorEdit) {
 		try {
-			const parameter = MarkdownPowerIndexParameter.load();
+			const parameter = MarkdownHeaderIndexerParameter.load();
 			const indexer = new MarkdownHeaderIndexer(parameter);
 
 			// Show index result method 1: Only replace the changed line.

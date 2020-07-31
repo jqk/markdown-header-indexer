@@ -50,7 +50,7 @@
 				"markdownHeaderIndexer.firstLevelIndex": {
 					"type": "string",
 					"default": "chinese",
-					"description": "The characters used for the first level index. Predefined catalogs are 'ALPHABET', 'CHINESE', 'ROMAN' and 'DEFAULT' (or leave empty).\nUsage: at least 10 characters, each separated and enclosed by '|'. \nExample: |a|b|c|d|e|f|g|h|i|j|"
+					"description": "The characters used for the first level index. Predefined catalogs are 'Alphabet', 'Chinese', 'Roman', 'English' and 'Default' (or leave empty).\nUsage: at least 10 characters, each separated and enclosed by '|'. \nExample: |a|b|c|d|e|f|g|h|i|j|"
 				}
 			}
     }

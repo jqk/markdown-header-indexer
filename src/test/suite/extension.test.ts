@@ -3,7 +3,7 @@ import * as assert from 'assert';
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
 import * as vscode from 'vscode';
-import { MarkdownPowerIndexParameter } from '../../MarkdownPowerIndexParameter';
+import { MarkdownHeaderIndexerParameter } from '../../MarkdownHeaderIndexerParameter';
 import { MarkdownHeaderIndexer } from '../../MarkdownHeaderIndexer';
 
 suite('Extension Test Suite', () => {
@@ -19,7 +19,7 @@ suite('Extension Test Suite', () => {
 });
 
 function correctSettings() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	param.levelBegin = 5;
 	param.levelEnd = 2;
 	param.levelPrefixAndPostfix = "|wrong prefix|   章 |  第 |节|";
@@ -34,7 +34,7 @@ function correctSettings() {
 }
 
 function removeIndexWithLevelPrePostfix() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	param.levelPrefixAndPostfix = "|第|章|第|节|";
 	const indexer = new MarkdownHeaderIndexer(param);
 	// Also test no space between postfix and label.
@@ -57,7 +57,7 @@ function removeIndexWithLevelPrePostfix() {
 }
 
 function addIndexWithDefaultSettings() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	const indexer = new MarkdownHeaderIndexer(param);
 	const source =
 		"# one\n" +
@@ -75,7 +75,7 @@ function addIndexWithDefaultSettings() {
 }
 
 function addIndexWithChineseFirstLevel() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	param.firstLevelIndex = "chinese";
 	const indexer = new MarkdownHeaderIndexer(param);
 	const source =
@@ -94,7 +94,7 @@ function addIndexWithChineseFirstLevel() {
 }
 
 function addIndexWithCustomFirstLevelAndPrePostfix() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	param.firstLevelIndex = "|_ONE_|_TWO_|_THREE_|_FOUR_|_FIVE_|_SIX_|_SEVEN_|_EIGHT_|_NINE_|_TEN_|";
 	param.levelPrefixAndPostfix = "| Chapter  |  ->|||";
 	const indexer = new MarkdownHeaderIndexer(param);
@@ -114,7 +114,7 @@ function addIndexWithCustomFirstLevelAndPrePostfix() {
 }
 
 function addIndexWithOtherLevelPrePostfix() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	param.levelPrefixAndPostfix = "|||第|节|";
 	const indexer = new MarkdownHeaderIndexer(param);
 	const source =
@@ -133,7 +133,7 @@ function addIndexWithOtherLevelPrePostfix() {
 }
 
 function matchSpecialCharsInIndex() {
-	const param = new MarkdownPowerIndexParameter();
+	const param = new MarkdownHeaderIndexerParameter();
 	param.levelPrefixAndPostfix = "|<>{}[] | +-*/!=|^$? | .,:\\|";
 	const indexer = new MarkdownHeaderIndexer(param);
 	const source =

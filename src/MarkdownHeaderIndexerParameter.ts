@@ -2,14 +2,17 @@
 import { workspace } from "vscode";
 import * as vscode from 'vscode';
 
-export class MarkdownPowerIndexParameter {
+/**
+ * represent configuration parameter for Markdown Header Indexer.
+ */
+export class MarkdownHeaderIndexerParameter {
     public levelBegin = 2;
     public levelEnd = 6;
     public levelPrefixAndPostfix = "";
     public firstLevelIndex = "";
 
-    public static load(): MarkdownPowerIndexParameter {
-        const parameter = new MarkdownPowerIndexParameter();
+    public static load(): MarkdownHeaderIndexerParameter {
+        const parameter = new MarkdownHeaderIndexerParameter();
         const configuration = workspace.getConfiguration("markdownHeaderIndexer");
 
         if (configuration) {
@@ -39,7 +42,7 @@ export class MarkdownPowerIndexParameter {
         return parameter;
     }
 
-    public static save(parameter: MarkdownPowerIndexParameter) {
+    public static save(parameter: MarkdownHeaderIndexerParameter) {
         const configuration = workspace.getConfiguration("markdownHeaderIndexer");
 
         if (configuration) {
