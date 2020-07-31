@@ -4,6 +4,8 @@
 
 ## 一、 特点
 
+![operation](images/operation.png)
+
 ### 1.1 更新标题序号
 
 没有序号则`添加`，有序号则`更新`。
