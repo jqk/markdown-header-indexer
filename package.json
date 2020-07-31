@@ -1,9 +1,10 @@
 {
   "name": "markdown-header-indexer",
-  "displayName": "markdown-header-indexer",
+  "displayName": "Markdown Header Indexer",
   "description": "Adding index to markdown header",
   "icon": "images/markdown-header-indexer.png",
-  "publisher": "Jason Fu",
+  "repository": "https://github.com/jqk/markdown-header-indexer",
+  "publisher": "jqk",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.47.0"
@@ -20,11 +21,11 @@
     "commands": [
       {
         "command": "extension.updateMarkdownHeaderIndex",
-        "title": "Markdown Update header index"
+        "title": "Markdown Update Header Index"
       },
       {
         "command": "extension.removeMarkdownHeaderIndex",
-        "title": "Markdown Remove header index"
+        "title": "Markdown Remove Header Index"
       }
     ],
     "configuration": {

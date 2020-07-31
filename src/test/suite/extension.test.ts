@@ -37,7 +37,7 @@ function removeIndexWithLevelPrePostfix() {
 	const param = new MarkdownPowerIndexParameter();
 	param.levelPrefixAndPostfix = "|第|章|第|节|";
 	const indexer = new MarkdownHeaderIndexer(param);
-	// Also test no space between postfix and lable.
+	// Also test no space between postfix and label.
 	const source =
 		"# one\n" +
 		"## 第5525章two\n" +
