@@ -21,21 +21,27 @@
 * 为一级标题设置不同的标题名称。
 * 为各级标题添加前缀和后缀，如`<< 1.2 >>`，`===[ 1.3 >>>>`等。
 
-配置应用于整个文档。
+配置应用于整个文档，同一文档中不能有多个配置同时生效。
 
-通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Update Header Index`完成更新标题序号操作。
+通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Update Header Index`完成更新标题序号操作。不会对非标题行有任何影响。
 
 ### 1.2 清除标题序号
 
-根据配置的`标题级别范围`，清除所有标题序号。
+根据配置的当前配置，清除所有标题序号。所以，在修改配置前，应先执行一次`清除标题序号`的操作。
 
-通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Remove Header Index`完成清除标题序号操作。
+通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Remove Header Index`完成清除标题序号操作。不会对非标题行有任何影响。
 
 ## 二、 插件配置及示例
 
-### 2.1 示例文档
+### 2.1 配置内容
 
-本节所有示例针对以下文档：
+`Markdown Header Indexer`共有如下配置：
+
+![config image](images/config.png)
+
+### 2.2 示例文档
+
+本文所有示例基于以下文档：
 
 ```markdown
 # Header One
@@ -50,7 +56,7 @@
 
 为显示紧凑，忽略了所有空行，后同。
 
-### 2.2 默认功能
+### 2.3 默认功能
 
 使用默认配置`更新标题序号`结果如下：
 
@@ -71,11 +77,7 @@
 
 如果手工为`Header Seven`添加了序号，`清除标题序号`不会修改该行。
 
-### 2.3 配置项1
-
-`Markdown Header Indexer`共有如下配置：
-
-![config image](images/config.png)
+### 2.4 配置项1
 
 将`配置项1`修改为`ALPHABET`后，`更新标题序号`结果如下：
 
@@ -116,21 +118,27 @@
 ## 2、 Header Two
 ```
 
-注意`Header Two`序号后面的`、`，这是序号后缀，将在`配置项4`中设置。
+注意`Header Two`序号后面的`、`，这是序号后缀，将在`配置项4`中设置。序号与标题内容之间自动插入一个空格，可手工删除，不影响更新和清除。
 
-`DEFAULT`或空使用数字序号，所以是无限的，其它序号均只支持到`20`。若需要支持超过`20`的序号，需自行设置：用`|`将所有序号分隔。示例如下：
+`配置项1`设置`DEFAULT`或空字符串时使用数字序号，所以是无限的，其它序号均支持数量有限：
+
+* ALPHABET: 26
+* CHINESE: 20
+* ROMAN: 20
+
+若需要支持超过限制的序号，需自行设置：用`|`将所有序号分隔。示例如下：
 
 ```text
-|One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty|Twenty One|Twenty Tow|Twenty Three|
+|One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty|Twenty-One|Twenty-Tow|Twenty-Three|
 ```
 
-以上示例设置标题最大到`23`。
+以上示例设置标题序号最大到`23`。
 
-可以自行定义一级标题使用的字符串。该定义只对一级标题有效。
+该定义只对一级标题有效。自定义的标题序号字符串中**不能包含空格**，且至少提供`10`个值，否则将使用`DEFAULT`。
 
-### 2.4 配置项2、3
+### 2.5 配置项2及配置项3
 
-`配置项2`和`配置项3`定义了`标题级别范围`，只有在该范围的标题才会被`更新标题序号`。
+`配置项2`和`配置项3`定义了`标题级别范围`，只有在该范围的标题才会被更新及清除标题序号。
 
 将`配置项2`设置为`1`，`配置项3`设置为`7`，执行`更新标题序号`后结果如下：
 
@@ -148,7 +156,7 @@
 * 因为`配置项2`被设置为`1`，所以`Header One`也被添加了序号。
 * 因为`配置项3`被设置为`7`，所以`Header Seven`也被添加了序号。
 
-### 2.5 配置项4
+### 2.6 配置项4
 
 `配置项4`使用`|`分隔前后缀，按顺序为：
 
@@ -157,7 +165,7 @@
 1. 其它标题前缀。
 1. 其它标题后缀。
 
-不使用后缀将其设置为空即可。
+不使用后缀将其设置为空客串即可。
 
 将`配置项4`设置为`|第|章|||`，`配置项1`设置为`CHINESE`，`配置项2`为`2`，`配置项3`为`6`，执行`更新标题序号`后结果如下：
 
@@ -172,7 +180,7 @@
 ## 第二章 Header Two
 ```
 
-将`配置项4`设置为`|Chapter||||`，`配置项1`设置为前面自定义的支持最多23个序号的内容，执行`更新标题序号`后结果如下：
+将`配置项4`设置为`|Chapter ||||`，`配置项1`设置为前面自定义的支持最多23个序号的内容，执行`更新标题序号`后结果如下：
 
 ```markdown
 # Header One
@@ -184,6 +192,21 @@
 ####### Header Seven
 ## Chapter Two Header Two
 ```
+
+注意以上设置的一级标题前级`Chapter`后面有一个空格，如果没有这个空格，则结果如下：
+
+```markdown
+# Header One
+## ChapterOne Header Two
+### 1.1 Header Three
+#### 1.1.1 Header Four
+##### 1.1.1.1 Header Five
+###### 1.1.1.1.1 Header Six
+####### Header Seven
+## ChapterTwo Header Two
+```
+
+**在前缀、后缀的实际内容前后，如果存在多个空格，则系统只保留一个空格**。
 
 将`配置项4`设置为`|||<<|>>|`，`配置项1`设置为`DEFAULT`，执行`更新标题序号`后结果如下：
 
@@ -200,14 +223,25 @@
 
 ## 三、 注意事项
 
+### 3.1 修改配置文件
+
 `更新标题序号`的过程是先执行`清除标题序号`，再根据配置添加标题序号。
 
 如果在两次更新过程之间，或者更新与清除操作之间变更过配置，标题序号可能清除不完整。因此：
 
 > 在修改配置之前，应执行`清除标题序号`。
 
+### 3.2 标题内容
+
+标题内容`不要以数字开始`，否则可能被错误清除。
+
 ## 四、 发行历史
 
-### 4.1 VER 1.0.0: 2020-07-31
+### 4.1 版本1.0.0: 2020-07-31
 
 初始版本。
+
+## 五、 参考
+
+* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
