@@ -44,12 +44,12 @@
 				},
 				"markdownHeaderIndexer.levelPrefixAndPostfix": {
 					"type": "string",
-					"default": "||、|||",
+					"default": "|||||",
 					"description": "Prefix and postfix for the first level and all other level indexes, separated and enclosed by '|'.\nUsage: |first-level-prefix|first-level-postfix|other-level-prefix|other-level-postfix|"
 				},
 				"markdownHeaderIndexer.firstLevelIndex": {
 					"type": "string",
-					"default": "chinese",
+					"default": "Default",
 					"description": "The characters used for the first level index. Predefined catalogs are 'Alphabet', 'Chinese', 'Roman', 'English' and 'Default' (or leave empty).\nUsage: at least 10 characters, each separated and enclosed by '|'. \nExample: |a|b|c|d|e|f|g|h|i|j|"
 				}
 			}

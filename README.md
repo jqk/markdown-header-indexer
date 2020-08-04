@@ -1,58 +1,69 @@
-# Markdown Header Indexer说明 [For English](README-EN.md)
+# Markdown Header Indexer
 
-`Markdown Header Indexer`是一款为`Markdown`文件更新标题序号的`VSCode`插件。初始开发于`VSCode 1.41.0`，没有其它依赖。理论上所有此版本后的`VSCode`均可使用。
+[中文版](README-CN.md)
 
-本文使用`Markdown Header Indexer`的默认配置生成标题序号：
+`Markdown Header Indexer` is a vscode plugin that allows you set the sequence number for the markdown headers.
 
-| 配置项 | 取值 |
-| --------   | ----- |
-| First Level Index | Chinese |
-| Level Begin | 2 |
-| Level End | 6 |
-| Level Prefix And Postfix | \|\|、\|\|\| |
+It was originally developed with VSCode 1.41.0 and has no other dependencies.
 
-## 一、 特点
+This article uses the following configuration of the `Markdown Header Indexer` to generate header sequences:
+
+| Setting | Value | Default |
+| --------   | ----- | :-----: |
+| First Level Index | English | No |
+| Level Begin | 2 | Yes |
+| Level End | 6 | Yes |
+| Level Prefix And Postfix | \|Chapter \| -\|\|\| | No |
+
+## Chapter One - Features
 
 ![operation](images/operation.png)
 
-### 1.1 更新标题序号
+### 1.1 Update Header Index
 
-没有序号则`添加`，有序号则`更新`。
+If there is no sequence number, add a sequence number to the header, otherwise update the sequence number.
 
-默认支持`VSCode`中的标题规则：
+Markdown header rule in VSCode are supported by default:
 
-* `#`为文章标题，不加标题序号。
-* `##`为一级标题，可以定义不同的标题名称，如`第一章`、`Chapter One`、`A`、`1`、`IV`等。
-* `###`至`######`使用数字，以`.`分隔，如`1.1`，`2.3.4.5.6`等。
-* 多于`6个#`不添加序号。
+* `#` is the file title, no sequence number will be added.
+* `##` is the first level title and can use different strings such as "Chapter One", "A", "IV" etc.
+* `###` to `######` use numbers as sequence numbers, separated by '.'. Example: `1.1`, `2.3.4.5.6` etc.
+* Header with more than 6 `#` will not have a sequence number added.
 
-通过修改配置：
+By change configuration, you can:
 
-* 可以为`#`及多于`6个#`的标题添加序号。
-* 为一级标题设置不同的标题名称。
-* 为各级标题添加前缀和后缀，如`<< 1.2 >>`，`===[ 1.3 >>>>`等。
+* Add sequence numbers to headers containing any number of `#`.
+* Set a different sequence number string for the first level headers.
+* Add prefix and postfix string to the sequence number.
 
-配置应用于整个文档，同一文档中不能有多个配置同时生效。
+The configuration applies to all document.
 
-通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Update Header Index`完成更新标题序号操作。不会对非标题行有任何影响。
+To run the function, open command window with `Ctrl+Shift+P`, and select `Markdown Update Header Index`.
 
-### 1.2 清除标题序号
+### 1.2 Remove Header Index
 
-根据配置的当前配置，清除所有标题序号。所以，在修改配置前，应先执行一次`清除标题序号`的操作。
+Clear all sequence numbers according to the current configuration. **Remember to remove all header indexes via this function before changing the configuration**.
 
-通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Remove Header Index`完成清除标题序号操作。不会对非标题行有任何影响。
+To run the function, open command window with `Ctrl+Shift+P`, and select `Markdown Remove Header Index`.
 
-## 二、 插件配置及示例
+## Chapter Two - Extension Settings
 
-### 2.1 配置内容
+### 2.1 Configuration context
 
-`Markdown Header Indexer`共有如下配置：
+`Markdown Header Indexer` has the following settings:
 
 ![config image](images/config.png)
 
-### 2.2 示例文档
+| Setting |  Default |
+| --------  | :-----: |
+| First Level Index | Default (or empty) |
+| Level Begin | 2 |
+| Level End | 6 |
+| Level Prefix And Postfix | \|\|\|\|\| |
 
-本文所有示例基于以下文档：
+### 2.2 Example file
+
+All examples are based on this markdown file, empty lines are omitted:
 
 ```markdown
 # Header One
@@ -65,98 +76,102 @@
 ## Header Two
 ```
 
-为显示紧凑，忽略了所有空行，后同。
+### 2.3 Default effect
 
-### 2.3 默认功能
-
-使用默认配置`更新标题序号`结果如下：
+Update header index with default settings:
 
 ```Markdown
 # Header One
-## 一、 Header Two
+## 1 Header Two
 ### 1.1 Header Three
 #### 1.1.1 Header Four
 ##### 1.1.1.1 Header Five
 ###### 1.1.1.1.1 Header Six
 ####### Header Seven
-## 二、 Header Two
+## 2 Header Two
 ```
 
-`Header Seven`不在标题级别范围之内，所以没有添加序号。
+`Header Seven` is outside the sequence header level, so no serial number was added.
 
-`清除标题序号`后为恢复为原始文档。
+Running `Markdown Remove Header Index` will revert the file to the original document。
 
-如果手工为`Header Seven`添加了序号，`清除标题序号`不会修改该行。
+If you set it manually, the sequence number of the `Header Seven` will not be deleted.
 
-### 2.4 配置项1：`First Level Index`
+### 2.4 Setting 1：`First Level Index`
 
-以下预定义序号的名称，如`ALPHABET`、`ROMAN`等大小写不敏感。
+The predefined first level index pattern names are case insensitive.
 
-将`配置项1`修改为`ALPHABET`后，`更新标题序号`结果如下：
+Setting 1 set to `ALPHABET`:
 
 ```markdown
 # Header One
-## A、 Header Two
+## A Header Two
 ### 1.1 Header Three
 #### 1.1.1 Header Four
 ##### 1.1.1.1 Header Five
 ###### 1.1.1.1.1 Header Six
 ####### Header Seven
-## B、 Header Two
+## B Header Two
 ```
 
-将`配置项1`修改为`ROMAN`后，`更新标题序号`结果如下：
+Setting 1 set to `ROMAN`:
 
 ```markdown
 # Header One
-## I、 Header Two
+## I Header Two
 ### 1.1 Header Three
 #### 1.1.1 Header Four
 ##### 1.1.1.1 Header Five
 ###### 1.1.1.1.1 Header Six
 ####### Header Seven
-## II、 Header Two
+## II Header Two
 ```
 
-将`配置项1`设置为空后，`更新标题序号`结果如下：
+Setting 1 set to empty string:
 
 ```markdown
 # Header One
-## 1、 Header Two
+## 1 Header Two
 ### 1.1 Header Three
 #### 1.1.1 Header Four
 ##### 1.1.1.1 Header Five
 ###### 1.1.1.1.1 Header Six
 ####### Header Seven
-## 2、 Header Two
+## 2 Header Two
 ```
 
-注意`Header Two`序号后面的`、`，这是序号后缀，将在`配置项4`中设置。序号与标题内容之间自动插入一个空格，可手工删除，不影响更新和清除。
+If you set `Setting 1` to an empty string or 'default', it will use numbers as the sequence number. At this point, the serial number is infinite. But other predefined patterns have numerical ranges:
 
-`配置项1`设置`DEFAULT`或空字符串时使用数字序号，所以是无限的，其它序号均支持数量有限：
+* ALPHABET: 26, `A` to `Z`
+* CHINESE: 20, `一` to `二十`
+* ROMAN: 20, `I` to `XX`
+* ENGLISH: 20, `One` to `Twenty`
 
-* ALPHABET: 26
-* CHINESE: 20
-* ROMAN: 20
-* ENGLISH: 20
+If the sequence is out of range, the number will be used. For example, there is no letter in the `ALPHABET` that corresponds to 27, so just use the number 27 as the sequence number:
 
-超限制时，将使用数字。例如使用`ALPHABET`，第`27`项由于没有对应的定义，将使用`27`作为序号。
+```markdown
+# Header One
+## A Header Two
+...
+## Z Header Two
+## 27 Header Two
+```
 
-若要支持超过限制的序号，可自行设置：用`|`将所有序号分隔。示例如下：
+To support sequence numbers that exceed the limit, you must set your own. Set setting 1 as follows:
 
 ```text
-|Twenty-One|Twenty-Tow|Twenty-Three|One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty|
+|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|AA|BB|CC|DD|
 ```
 
-以上示例设置标题序号最大到`23`，相当于扩展了预定义的`ENGLISH`。前三项`Twenty-One`到`TwentyThree`仅为示例。
+Now we have a sequence containing 30 numbers.
 
-该定义只对一级标题有效。自定义的标题序号字符串中**不能包含空格**，且至少提供`10`个值，否则将使用`DEFAULT`。
+As described in the configuration name, `Setting 1` only works for the first level index. Customized first level index should contain no blank space and at least 10 sequence number should be provided. Otherwise, `DEFAULT` will be applied.
 
-### 2.5 配置项2：`Level Begin`及配置项3：`Level End`
+### 2.5 Setting 2：`Level Begin` and Setting 3：`Level End`
 
-`配置项2`和`配置项3`定义了`标题级别范围`，只有在该范围的标题才会被更新及清除标题序号。
+`Setting 2` and `Setting 3` defines the header range for applying the sequence number.
 
-将`配置项2`设置为`1`，`配置项3`设置为`7`，执行`更新标题序号`后结果如下：
+Set `Setting 2` to `1` and `Setting 3` to `7` and you'll get following result:
 
 ```markdown
 # 1、 Header One
@@ -169,34 +184,21 @@
 ## 1.2 Header Two
 ```
 
-* 因为`配置项2`被设置为`1`，所以`Header One`也被添加了序号。
-* 因为`配置项3`被设置为`7`，所以`Header Seven`也被添加了序号。
+* Since `Setting 2` is set to `1`, the `Header One` is added a sequence number.
+* Since `Setting 3` is set to `7`, the `Header Seven` is added a sequence number.
 
-### 2.6 配置项4：`Level Prefix And Postfix`
+### 2.6 Setting 4：`Level Prefix And Postfix`
 
-`配置项4`使用`|`分隔前后缀，按顺序为：
+`Setting 4` uses `|` to separate prefixes and suffixes:
 
-1. 一级标题前缀。
-1. 一级标题后缀。
-1. 其它标题前缀。
-1. 其它标题后缀。
+1. Prefix for the first level index.
+1. Suffix for the first level index.
+1. Prefix for other level indexes.
+1. Suffix for other level indexes.
 
-不使用后缀将其设置为空客串即可。
+You can leave it empty if you don't use a specified prefix or suffix.
 
-将`配置项4`设置为`|第|章|||`，`配置项1`设置为`CHINESE`，`配置项2`为`2`，`配置项3`为`6`，执行`更新标题序号`后结果如下：
-
-```markdown
-# Header One
-## 第一章 Header Two
-### 1.1 Header Three
-#### 1.1.1 Header Four
-##### 1.1.1.1 Header Five
-###### 1.1.1.1.1 Header Six
-####### Header Seven
-## 第二章 Header Two
-```
-
-将`配置项4`设置为`|Chapter ||||`，`配置项1`设置为前面自定义的支持最多23个序号的内容，执行`更新标题序号`后结果如下：
+Set `Setting 4` to `|Chapter ||||` and `Setting 1` to `ENGLISH`, then you'll get:
 
 ```markdown
 # Header One
@@ -209,7 +211,7 @@
 ## Chapter Two Header Two
 ```
 
-注意以上设置的一级标题前级`Chapter`后面有一个空格，如果没有这个空格，则结果如下：
+Note that there is a space after the `Chapter`. If there is no such space, the result will be as follows:
 
 ```markdown
 # Header One
@@ -222,9 +224,9 @@
 ## ChapterTwo Header Two
 ```
 
-**在前缀、后缀的实际内容前后，如果存在多个空格，则系统只保留一个空格**。
+**If there are more than one space before and after the actual content of the prefix and suffix, only one space will be kept by the system.**。
 
-将`配置项4`设置为`|||<<|>>|`，`配置项1`设置为`DEFAULT`，执行`更新标题序号`后结果如下：
+Set `Setting 4` to `|||<<|>>|`, `Setting 1` to `DEFAULT` (or leave it empty):
 
 ```markdown
 # Header One
@@ -237,21 +239,36 @@
 ## 2 Header Two
 ```
 
-## 三、 注意事项
+Set `Setting 4` to `|===|---|<<|>>|`, `Setting 1` to `DEFAULT` (or leave it empty):
 
-### 3.1 修改配置文件
+```markdown
+# Header One
+## ===1--- Header Two
+### <<1.1>> Header Three
+#### <<1.1.1>> Header Four
+##### <<1.1.1.1>> Header Five
+###### <<1.1.1.1.1>> Header Six
+####### Header Seven
+## ===2--- Header Two
+```
 
-`更新标题序号`的过程是先执行`清除标题序号`，再根据配置添加标题序号。
+## Chapter Three - Attention
 
-如果在两次更新过程之间，或者更新与清除操作之间变更过配置，标题序号可能清除不完整。因此：
+### 3.1 Change Configuration
 
-> 在修改配置之前，应执行`清除标题序号`。
+`Markdown Update Header Index` will perform `Markdown Remove Header Index` first, then add sequence numbers for headers. `Markdown Remove Header Index` runs according to current configuration. Header sequence numbers may be cleared incompletely if configuration changes are made between update processes, or between update and remove operations.
 
-### 3.2 标题内容
+So:
 
-标题内容`不要以数字开始`，否则可能被错误清除。
+> Before changed configuration, run `Markdown Remove Header Index` first.
 
-## 四、 参考
+### 3.2 Header Content
+
+The content of the header `Do not begin with a number', as it may be cleared by mistake.
+
+## Chapter Four - Markdown References
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+
+**Enjoy!**
