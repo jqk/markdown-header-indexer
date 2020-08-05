@@ -127,20 +127,7 @@ Setting 1 set to `ROMAN`:
 ## II Header Two
 ```
 
-Setting 1 set to empty string:
-
-```markdown
-# Header One
-## 1 Header Two
-### 1.1 Header Three
-#### 1.1.1 Header Four
-##### 1.1.1.1 Header Five
-###### 1.1.1.1.1 Header Six
-####### Header Seven
-## 2 Header Two
-```
-
-If you set `Setting 1` to an empty string or 'default', it will use numbers as the sequence number. At this point, the serial number is infinite. But other predefined patterns have numerical ranges:
+If you set `Setting 1` to an empty string or `default`, it will use numbers as the sequence number. At this point, the serial number is infinite. But other predefined patterns have numerical ranges:
 
 * ALPHABET: 26, `A` to `Z`
 * CHINESE: 20, `一` to `二十`
@@ -157,7 +144,7 @@ If the sequence is out of range, the number will be used. For example, there is 
 ## 27 Header Two
 ```
 
-To support sequence numbers that exceed the limit, you must set your own. Set setting 1 as follows:
+To support sequence numbers that exceed the limit, you must set your own. Set `Setting 1` as follows, for example:
 
 ```text
 |a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|AA|BB|CC|DD|
@@ -174,7 +161,7 @@ As described in the configuration name, `Setting 1` only works for the first lev
 Set `Setting 2` to `1` and `Setting 3` to `7` and you'll get following result:
 
 ```markdown
-# 1、 Header One
+# 1 Header One
 ## 1.1 Header Two
 ### 1.1.1 Header Three
 #### 1.1.1.1 Header Four
@@ -264,7 +251,7 @@ So:
 
 ### 3.2 Header Content
 
-The content of the header `Do not begin with a number', as it may be cleared by mistake.
+The content of the header `Do not begin with a`, as it may be cleared by mistake.
 
 ## Chapter Four - Markdown References
 
