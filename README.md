@@ -15,11 +15,83 @@ This article uses the following configuration of the `Markdown Header Indexer` t
 | Level End | 6 | Yes |
 | Level Prefix And Postfix | \|Chapter \| -\|\|\| | No |
 
-## Chapter One - Features
+## Chapter One - Examples
+
+Customized styles are supported. Here are some examples.
+
+The simplest and default one:
+
+```text
+1 Introduction
+1.1 History
+......
+1.2 Future
+......
+2 - Plan
+2.1 Target
+......
+2.1.1 Step One
+......
+3 - Note
+......
+```
+
+Using Chapter as the first level header sequence number:
+
+```text
+Chapter One - Introduction
+1.1 History
+......
+1.2 Future
+......
+Chapter Two - Plan
+2.1 Target
+......
+2.1.1 Step One
+......
+Chapter Twenty - Note
+......
+```
+
+Using Roman numbers:
+
+```text
+I - Introduction
+1.1 History
+......
+1.2 Future
+......
+II - Plan
+2.1 Target
+......
+2.1.1 Step One
+......
+XX - Note
+......
+```
+
+Using alphabets:
+
+```text
+A - Introduction
+1.1 History
+......
+1.2 Future
+......
+B - Plan
+2.1 Target
+......
+2.1.1 Step One
+......
+Z - Note
+......
+```
+
+## Chapter Two - Features
 
 ![operation](images/operation.png)
 
-### 1.1 Update Header Index
+### 2.1 Update Header Index
 
 If there is no sequence number, add a sequence number to the header, otherwise update the sequence number.
 
@@ -40,15 +112,15 @@ The configuration applies to all document.
 
 To run the function, open command window with `Ctrl+Shift+P`, and select `Markdown Update Header Index`.
 
-### 1.2 Remove Header Index
+### 2.2 Remove Header Index
 
 Clear all sequence numbers according to the current configuration. **Remember to remove all header indexes via this function before changing the configuration**.
 
 To run the function, open command window with `Ctrl+Shift+P`, and select `Markdown Remove Header Index`.
 
-## Chapter Two - Extension Settings
+## Chapter Three - Extension Settings
 
-### 2.1 Configuration context
+### 3.1 Configuration context
 
 `Markdown Header Indexer` has the following settings:
 
@@ -61,7 +133,7 @@ To run the function, open command window with `Ctrl+Shift+P`, and select `Markdo
 | Level End | 6 |
 | Level Prefix And Postfix | \|\|\|\|\| |
 
-### 2.2 Example file
+### 3.2 Example file
 
 All examples are based on this markdown file, empty lines are omitted:
 
@@ -76,7 +148,7 @@ All examples are based on this markdown file, empty lines are omitted:
 ## Header Two
 ```
 
-### 2.3 Default effect
+### 3.3 Default effect
 
 Update header index with default settings:
 
@@ -97,7 +169,7 @@ Running `Markdown Remove Header Index` will revert the file to the original docu
 
 If you set it manually, the sequence number of the `Header Seven` will not be deleted.
 
-### 2.4 Setting 1：`First Level Index`
+### 3.4 Setting 1：`First Level Index`
 
 The predefined first level index pattern names are case insensitive.
 
@@ -154,7 +226,7 @@ Now we have a sequence containing 30 numbers.
 
 As described in the configuration name, `Setting 1` only works for the first level index. Customized first level index should contain no blank space and at least 10 sequence number should be provided. Otherwise, `DEFAULT` will be applied.
 
-### 2.5 Setting 2：`Level Begin` and Setting 3：`Level End`
+### 3.5 Setting 2：`Level Begin` and Setting 3：`Level End`
 
 `Setting 2` and `Setting 3` defines the header range for applying the sequence number.
 
@@ -174,7 +246,7 @@ Set `Setting 2` to `1` and `Setting 3` to `7` and you'll get following result:
 * Since `Setting 2` is set to `1`, the `Header One` is added a sequence number.
 * Since `Setting 3` is set to `7`, the `Header Seven` is added a sequence number.
 
-### 2.6 Setting 4：`Level Prefix And Postfix`
+### 3.6 Setting 4：`Level Prefix And Postfix`
 
 `Setting 4` uses `|` to separate prefixes and suffixes:
 
@@ -239,9 +311,9 @@ Set `Setting 4` to `|===|---|<<|>>|`, `Setting 1` to `DEFAULT` (or leave it empt
 ## ===2--- Header Two
 ```
 
-## Chapter Three - Attention
+## Chapter Four - Precautions
 
-### 3.1 Change Configuration
+### 4.1 Change Configuration
 
 `Markdown Update Header Index` will perform `Markdown Remove Header Index` first, then add sequence numbers for headers. `Markdown Remove Header Index` runs according to current configuration. Header sequence numbers may be cleared incompletely if configuration changes are made between update processes, or between update and remove operations.
 
@@ -249,11 +321,11 @@ So:
 
 > Before changed configuration, run `Markdown Remove Header Index` first.
 
-### 3.2 Header Content
+### 4.2 Header Content
 
 The content of the header `Do not begin with a`, as it may be cleared by mistake.
 
-## Chapter Four - Markdown References
+## Chapter Five - Markdown References
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)

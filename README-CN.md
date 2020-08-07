@@ -13,11 +13,81 @@
 | Level End | 6 | 是 |
 | Level Prefix And Postfix | \|\|、\|\|\| | 否 |
 
-## 一、 特点
+## 一、 示例
+
+使用章节：
+
+```text
+第一章 简介
+1.1 概述
+......
+1.2 参考资料
+......
+第二章 计划
+2.1 目标
+......
+2.1.1 步骤
+......
+第二十章 注意事项
+......
+```
+
+使用汉字序号：
+
+```text
+一、 简介
+1.1 概述
+......
+1.2 参考资料
+......
+二、 计划
+2.1 目标
+......
+2.1.1 步骤
+......
+二十、 注意事项
+......
+```
+
+使用英文Chapter：
+
+```text
+Chapter One - Introduction
+1.1 History
+......
+1.2 Future
+......
+Chapter Two - Plan
+2.1 Target
+......
+2.1.1 Step One
+......
+Chapter Twenty - Note
+......
+```
+
+使用英文字母：
+
+```text
+A - Introduction
+1.1 History
+......
+1.2 Future
+......
+B - Plan
+2.1 Target
+......
+2.1.1 Step One
+......
+Z - Note
+......
+```
+
+## 二、 特点
 
 ![operation](images/operation.png)
 
-### 1.1 更新标题序号
+### 2.1 更新标题序号
 
 没有序号则`添加`，有序号则`更新`。
 
@@ -38,15 +108,15 @@
 
 通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Update Header Index`完成更新标题序号操作。不会对非标题行有任何影响。
 
-### 1.2 清除标题序号
+### 2.2 清除标题序号
 
 根据配置的当前配置，清除所有标题序号。所以，在修改配置前，应先执行一次`清除标题序号`的操作。
 
 通过`Ctrl+Shift+P`打开命令窗口，输入或选择`Markdown Remove Header Index`完成清除标题序号操作。不会对非标题行有任何影响。
 
-## 二、 插件配置及示例
+## 三、 插件配置及示例
 
-### 2.1 配置内容
+### 3.1 配置内容
 
 `Markdown Header Indexer`共有如下配置：
 
@@ -59,7 +129,7 @@
 | Level End | 6 |
 | Level Prefix And Postfix | \|\|\|\|\| |
 
-### 2.2 示例文档
+### 3.2 示例文档
 
 本文所有示例基于以下文档：
 
@@ -76,7 +146,7 @@
 
 为显示紧凑，忽略了所有空行，后同。
 
-### 2.3 默认功能
+### 3.3 默认功能
 
 使用默认配置`更新标题序号`结果如下：
 
@@ -97,7 +167,7 @@
 
 如果手工为`Header Seven`添加了序号，`清除标题序号`不会修改该行。
 
-### 2.4 配置项1：`First Level Index`
+### 3.4 配置项1：`First Level Index`
 
 以下预定义序号的名称，如`ALPHABET`、`ROMAN`等大小写不敏感。
 
@@ -157,7 +227,7 @@
 
 该定义只对一级标题有效。自定义的标题序号字符串中**不能包含空格**，且至少提供`10`个值，否则将使用`DEFAULT`。
 
-### 2.5 配置项2：`Level Begin`及配置项3：`Level End`
+### 3.5 配置项2：`Level Begin`及配置项3：`Level End`
 
 `配置项2`和`配置项3`定义了`标题级别范围`，只有在该范围的标题才会被更新及清除标题序号。
 
@@ -177,7 +247,7 @@
 * 因为`配置项2`被设置为`1`，所以`Header One`也被添加了序号。
 * 因为`配置项3`被设置为`7`，所以`Header Seven`也被添加了序号。
 
-### 2.6 配置项4：`Level Prefix And Postfix`
+### 3.6 配置项4：`Level Prefix And Postfix`
 
 `配置项4`使用`|`分隔前后缀，按顺序为：
 
@@ -242,9 +312,9 @@
 ## 2 Header Two
 ```
 
-## 三、 注意事项
+## 四、 注意事项
 
-### 3.1 修改配置文件
+### 4.1 修改配置文件
 
 `更新标题序号`的过程是先执行`清除标题序号`，再根据配置添加标题序号。
 
@@ -252,11 +322,11 @@
 
 > 在修改配置之前，应执行`清除标题序号`。
 
-### 3.2 标题内容
+### 4.2 标题内容
 
 标题内容`不要以数字开始`，否则可能被错误清除。
 
-## 四、 Markdown参考
+## 五、 Markdown参考
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
